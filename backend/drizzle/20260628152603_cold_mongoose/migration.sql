@@ -1,0 +1,1 @@
+DROP INDEX "idx_users_public_id";

@@ -7,7 +7,7 @@
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "nodenext",
+    "module": "es2022",
     "target": "esnext",
     "types": [],
     // For nodejs:
@@ -22,7 +22,7 @@
 
     // Stricter Typechecking Options
     "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
+    "exactOptionalPropertyTypes": false,
 
     // Style Options
     // "noImplicitReturns": true,
@@ -40,5 +40,20 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
-  }
+    "ignoreDeprecations": "6.0",
+
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["*"],
+      "@configs/*": ["configs/*"],
+      "@conrollers/*": ["controllers/*"],
+      "@middlewares/*": ["middlewares/*"],
+      "@services/*": ["services/*"],
+      "@routes/*": ["routes/*"],
+      "@validators/*" : ["validators/*"],
+      "@db/*" : ["db/*"],
+      "@utils/*" : ["utils/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist", "drizzle.config.ts"]
 }
