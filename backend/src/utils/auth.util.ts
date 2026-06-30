@@ -21,7 +21,7 @@ const ARGON2_OPTIONS: argon2.Options & { type: typeof argon2.argon2id } = {
 };
 
 export const generateAccessToken = (payload: TokenPayload): string => {
-  return jwt.sign(payload, env.JWT_ACCESS_SECRET!, {
+  return jwt.sign(payload, env.JWT_ACCESS_TOKEN!, {
     expiresIn: ACCESS_TOKEN_EXPIRY,
     algorithm: "HS256",
     issuer: JWT_ISSUER,
@@ -30,7 +30,7 @@ export const generateAccessToken = (payload: TokenPayload): string => {
 };
 
 export const generateRefreshToken = (payload: TokenPayload): string => {
-  return jwt.sign(payload, env.JWT_REFRESH_SECRET!, {
+  return jwt.sign(payload, env.JWT_REFRESH_TOKEN!, {
     expiresIn: REFRESH_TOKEN_EXPIRY,
     algorithm: "HS256",
     issuer: JWT_ISSUER,
@@ -39,14 +39,14 @@ export const generateRefreshToken = (payload: TokenPayload): string => {
 };
 
 export const verifyAccessToken = (token: string): TokenPayload => {
-  return jwt.verify(token, env.JWT_ACCESS_SECRET!, {
+  return jwt.verify(token, env.JWT_ACCESS_TOKEN!, {
     issuer: JWT_ISSUER,
     audience: JWT_AUDIENCE,
   }) as TokenPayload;
 };
 
 export const verifyRefreshToken = (token: string): TokenPayload => {
-  return jwt.verify(token, env.JWT_REFRESH_SECRET!, {
+  return jwt.verify(token, env.JWT_REFRESH_TOKEN!, {
     issuer: JWT_ISSUER,
     audience: JWT_AUDIENCE,
   }) as TokenPayload;

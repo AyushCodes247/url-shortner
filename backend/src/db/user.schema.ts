@@ -7,7 +7,6 @@ import {
   boolean,
   timestamp,
   pgEnum,
-  index,
 } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
 
