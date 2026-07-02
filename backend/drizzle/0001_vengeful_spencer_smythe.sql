@@ -1,0 +1,1 @@
+DROP INDEX "urls_short_code_idx";

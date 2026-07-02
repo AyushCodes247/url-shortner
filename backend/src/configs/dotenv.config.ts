@@ -11,6 +11,12 @@ interface envType {
   REDIS_HOST: string;
   REDIS_PASSWORD: string;
   REDIS_PORT: number;
+  SMTP_USER: string;
+  SMTP_PASSWORD: string;
+  SMTP_HOST: string;
+  SMTP_PORT: number;
+  SMTP_SECURE: boolean;
+  MAIL_FROM: string;
 }
 
 const env: Partial<envType> = {
@@ -23,6 +29,12 @@ const env: Partial<envType> = {
   REDIS_HOST: process.env.REDIS_HOST,
   REDIS_PORT: Number(process.env.REDIS_PORT),
   REDIS_PASSWORD: process.env.REDIS_PASSWORD,
+  SMTP_USER: process.env.SMTP_USER,
+  SMTP_PASSWORD: process.env.SMTP_PASSWORD,
+  SMTP_HOST: process.env.SMTP_HOST,
+  SMTP_PORT: Number(process.env.SMTP_PORT),
+  SMTP_SECURE: process.env.SMTP_SECURE === "true",
+  MAIL_FROM: process.env.MAIL_USER,
 };
 
 if (!env) {

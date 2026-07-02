@@ -26,6 +26,7 @@ export interface ReturnType {
     name: string;
     email: string;
     gender: string;
+    isVerified : boolean;
   };
   accessToken: string;
   refreshToken: string;
@@ -57,6 +58,7 @@ export const registerService = async (
       name: userTable.name,
       email: userTable.email,
       gender: userTable.gender,
+      isVerified: userTable.isVerified
     });
 
   if (!user) {

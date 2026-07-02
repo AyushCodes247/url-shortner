@@ -1,27 +1,34 @@
-import type {
-  ErrorRequestHandler,
-  Request,
-  Response,
-  NextFunction,
-} from "express";
+import type { ErrorRequestHandler } from "express";
 import { AppError } from "@utils/error.util";
+import env from "@configs/dotenv.config";
 
-export const errorHandler: ErrorRequestHandler = (
-  err,
-  req: Request,
-  res: Response,
-  next: NextFunction,
-) => {
-  let error = err;
+export const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
+  let error: AppError;
 
-  if (!(error instanceof AppError)) {
-    error = new AppError("internal server error", 500);
+  if (err instanceof AppError) {
+    error = err;
+  } else {
+    error = new AppError(
+      "Internal server error",
+      500,
+      err instanceof Error ? err : undefined,
+    );
   }
 
-  res.status(error.statusCode).json({
+  const response: Record<string, unknown> = {
     success: false,
     status: error.status,
     message: error.message,
-    error : error
-  });
+  };
+
+  if (env.NODE_ENV !== "production") {
+    response.error = {
+      name: error.name,
+      statusCode: error.statusCode,
+      stack: error.stack,
+      cause: error.cause,
+    };
+  }
+
+  res.status(error.statusCode).json(response);
 };
