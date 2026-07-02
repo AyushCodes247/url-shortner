@@ -24,7 +24,7 @@ export interface LoginResponse {
     name: string;
     email: string;
     gender: string;
-    isVerified : boolean;
+    isVerified: boolean;
   };
   accessToken: string;
   refreshToken: string;
@@ -68,7 +68,7 @@ const loginService = async (data: LoginData): Promise<LoginResponse> => {
       name: user.name,
       email: user.email,
       gender: user.gender,
-      isVerified: user.isVerified
+      isVerified: user.isVerified,
     },
     accessToken,
     refreshToken,

@@ -1,12 +1,12 @@
 import { Router } from "express";
+import u_create from "@controllers/urls/u_create.controller";
+import verifyUser from "@middlewares/authentication/verifyUser.middleware";
+import u_redirect from "@/controllers/urls/u_redirect.controller";
 
 const router = Router();
 
-router.get("/check", (req,res) => {
-    return res.status(200).json({
-        success : true,
-        message : "Url Shortner API is working fine."
-    })
-})
+router.post("/create", verifyUser, u_create);
+
+router.get("/r/:shortCode", u_redirect);
 
 export default router;

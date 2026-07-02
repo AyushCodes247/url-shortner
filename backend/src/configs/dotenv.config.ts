@@ -17,6 +17,7 @@ interface envType {
   SMTP_PORT: number;
   SMTP_SECURE: boolean;
   MAIL_FROM: string;
+  BASE_SHORT_URL: string;
 }
 
 const env: Partial<envType> = {
@@ -35,6 +36,7 @@ const env: Partial<envType> = {
   SMTP_PORT: Number(process.env.SMTP_PORT),
   SMTP_SECURE: process.env.SMTP_SECURE === "true",
   MAIL_FROM: process.env.MAIL_USER,
+  BASE_SHORT_URL: process.env.BASE_SHORT_URL,
 };
 
 if (!env) {

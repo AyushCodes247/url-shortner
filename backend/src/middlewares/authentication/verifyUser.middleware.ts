@@ -36,6 +36,7 @@ const verifyUser = asyncHandler(async (req, res, next) => {
       name: true,
       email: true,
       isVerified: true,
+      id : true
     },
   });
 

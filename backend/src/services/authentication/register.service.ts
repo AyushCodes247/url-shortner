@@ -26,15 +26,13 @@ export interface ReturnType {
     name: string;
     email: string;
     gender: string;
-    isVerified : boolean;
+    isVerified: boolean;
   };
   accessToken: string;
   refreshToken: string;
 }
 
-export const registerService = async (
-  data: RegisterData,
-): Promise<ReturnType> => {
+export const registerService = async (data: RegisterData) => {
   const existingUser = await db.query.userTable.findFirst({
     where: eq(userTable.email, data.email),
   });
@@ -58,7 +56,7 @@ export const registerService = async (
       name: userTable.name,
       email: userTable.email,
       gender: userTable.gender,
-      isVerified: userTable.isVerified
+      isVerified: userTable.isVerified,
     });
 
   if (!user) {
