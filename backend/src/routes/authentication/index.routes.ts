@@ -20,5 +20,4 @@ router.get("/profile", verifyUser, profile);
 router.post("/otp", verifyUser, otp);
 router.post("/verify-otp", verifyUser, verifyOtp);
 
-
 export default router;
